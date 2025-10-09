@@ -1,0 +1,764 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chlorophyll Printing Guide</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600&family=Crimson+Pro:ital,wght@0,400;1,400&display=swap');
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --color-text: #1a1a1a;
+        --color-text-muted: #6b6b6b;
+        --color-accent: #2d5a3d;
+        --color-bg: #ffffff;
+        --color-line: #d4d4d4;
+        --color-highlight: #d4f542;
+        
+        --font-sans: 'Libre Franklin', -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-serif: 'Crimson Pro', Georgia, serif;
+    }
+
+    body {
+        font-family: var(--font-sans);
+        background: #fafdf8;
+        color: var(--color-text);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        min-height: 100vh;
+    }
+
+    .container {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 4rem 3rem;
+    }
+
+    header {
+        margin-bottom: 4rem;
+        max-width: 1600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .cover-image {
+        width: 100%;
+        height: 70vh;
+        min-height: 500px;
+        background-image: url('Pittsburgh_April20_2025-ad.jpg');
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        margin-bottom: 4rem;
+        display: flex;
+        align-items: center;
+        padding-left: 6rem;
+    }
+
+    .cover-title {
+        color: white;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .cover-author {
+        color: white;
+        font-size: 1.125rem;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        margin-top: 2rem;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+        font-family: var(--font-sans);
+        font-size: clamp(3rem, 8vw, 5.5rem);
+        font-weight: 400;
+        letter-spacing: -0.01em;
+        line-height: 1;
+        margin-bottom: 1.5rem;
+        color: var(--color-text);
+        text-transform: uppercase;
+    }
+
+    .subtitle {
+        font-size: clamp(1.125rem, 2vw, 1.5rem);
+        color: var(--color-text-muted);
+        max-width: 700px;
+        line-height: 1.6;
+    }
+
+    .section {
+        margin-bottom: 6rem;
+    }
+
+    .section-header {
+        margin-bottom: 3rem;
+    }
+
+    h2 {
+        font-family: var(--font-sans);
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        color: var(--color-text);
+        text-transform: uppercase;
+        border-bottom: 2px solid var(--color-text);
+        padding-bottom: 1rem;
+    }
+
+    .intro-text {
+        font-size: 1.1875rem;
+        line-height: 1.7;
+        color: var(--color-text);
+        max-width: 800px;
+    }
+
+    .assembly-section {
+        background: white;
+        border: 1px solid var(--color-line);
+        padding: 3rem;
+    }
+
+    .assembly-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 4rem;
+        align-items: start;
+    }
+
+    .info-side {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .diagram-side {
+        position: sticky;
+        top: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .diagram-image {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+    }
+
+    .info-card {
+        border: 1px solid var(--color-line);
+        background: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .info-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .info-card.active {
+        border-color: var(--color-text);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .info-header {
+        padding: 1.5rem;
+        background: var(--color-highlight);
+        font-weight: 600;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .info-card.active .info-header {
+        background: var(--color-text);
+        color: white;
+    }
+
+    .expand-icon {
+        font-size: 1.25rem;
+        transition: transform 0.3s ease;
+    }
+
+    .info-card.active .expand-icon {
+        transform: rotate(180deg);
+    }
+
+    .info-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+
+    .info-card.active .info-content {
+        max-height: 1000px;
+        padding: 1.5rem;
+        border-top: 1px solid var(--color-line);
+    }
+
+    .info-image {
+        width: 100%;
+        height: auto;
+        margin-bottom: 1rem;
+        border: 1px solid var(--color-line);
+    }
+
+    .info-content p {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: var(--color-text);
+        margin-bottom: 1rem;
+    }
+
+    .info-content p:last-child {
+        margin-bottom: 0;
+    }
+
+    .info-note {
+        font-style: italic;
+        color: var(--color-text-muted);
+        padding-top: 1rem;
+        margin-top: 1rem;
+        border-top: 1px solid var(--color-line);
+    }
+
+    .exposure-section {
+        background: white;
+        border: 1px solid var(--color-line);
+        padding: 3rem;
+    }
+
+    .exposure-content {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 4rem;
+        align-items: start;
+    }
+
+    .exposure-labels {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .exposure-label-card {
+        border: 1px solid var(--color-line);
+        background: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .exposure-label-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .exposure-label-card.active {
+        border-color: var(--color-text);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .exposure-label-header {
+        padding: 1.5rem;
+        background: var(--color-highlight);
+        font-weight: 600;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .exposure-label-card.active .exposure-label-header {
+        background: var(--color-text);
+        color: white;
+    }
+
+    .exposure-label-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+
+    .exposure-label-card.active .exposure-label-content {
+        max-height: 1000px;
+        padding: 1.5rem;
+        border-top: 1px solid var(--color-line);
+    }
+
+    .exposure-label-content p {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: var(--color-text);
+        margin-bottom: 1rem;
+    }
+
+    .exposure-label-content p:last-child {
+        margin-bottom: 0;
+    }
+
+    .exposure-label-note {
+        font-style: italic;
+        color: var(--color-text-muted);
+        padding-top: 1rem;
+        margin-top: 1rem;
+        border-top: 1px solid var(--color-line);
+    }
+
+    .exposure-images {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        align-items: center;
+    }
+
+    .exposure-image {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .exposure-photo {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        border-top: 1px solid var(--color-line);
+        padding-top: 1rem;
+        margin-top: 1rem;
+    }
+
+    .variables-table {
+        margin-top: 1.5rem;
+        border-top: 1px solid var(--color-line);
+    }
+
+    .variable-row {
+        display: grid;
+        grid-template-columns: 160px 1fr;
+        gap: 2rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--color-line);
+    }
+
+    .variable-label {
+        font-weight: 600;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .variable-value {
+        color: var(--color-text-muted);
+        font-size: 1rem;
+    }
+
+    .results-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem;
+        margin-top: 2.5rem;
+    }
+
+    .result-item {
+        background: white;
+        border: 1px solid var(--color-line);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .result-item:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+    }
+
+    .result-image {
+        width: 100%;
+        aspect-ratio: 3/2;
+        background: #f5f5f5;
+        border-bottom: 1px solid var(--color-line);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+    }
+
+    .result-image:hover {
+        opacity: 0.9;
+    }
+
+    .result-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .result-caption {
+        padding: 1.5rem;
+        font-size: 0.9375rem;
+        color: var(--color-text-muted);
+        line-height: 1.5;
+    }
+
+    .result-source {
+        padding: 0 1.5rem 1.5rem 1.5rem;
+        font-size: 0.6875rem;
+        line-height: 1.4;
+        color: var(--color-text-muted);
+    }
+
+    .result-source a {
+        color: var(--color-accent);
+        text-decoration: none;
+        word-break: break-all;
+    }
+
+    .result-source a:hover {
+        text-decoration: underline;
+    }
+
+    .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .lightbox.active {
+        display: flex;
+    }
+
+    .lightbox-content {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        box-shadow: 0 0 60px rgba(255, 255, 255, 0.1);
+    }
+
+    .lightbox-close {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        color: white;
+        font-size: 3rem;
+        font-weight: 300;
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease;
+    }
+
+    .lightbox-close:hover {
+        transform: scale(1.1);
+    }
+
+    footer {
+        margin-top: 6rem;
+        padding-top: 3rem;
+        border-top: 1px solid var(--color-line);
+        text-align: center;
+        color: var(--color-text-muted);
+        font-size: 0.875rem;
+    }
+
+    @media (max-width: 1100px) {
+        .assembly-grid,
+        .exposure-content {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        .diagram-side {
+            position: relative;
+            top: 0;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .container {
+            padding: 2rem 1.5rem;
+        }
+
+        .variable-row {
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+        }
+
+        .results-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="cover-image">
+                <div class="cover-title">
+                    <h1>Chlorophyll<br>Printing<br>Guide</h1>
+                    <p class="cover-author">By Kimberly Blacutt</p>
+                </div>
+            </div>
+            <p class="subtitle">A chemical-free photographic process where images are developed on fresh leaves using sunlight and the natural photosensitivity of chlorophyll.</p>
+        </header>
+
+        <!-- ASSEMBLY SECTION -->
+        <section class="section">
+            <div class="section-header">
+                <h2>Assembly</h2>
+                <p class="intro-text">The assembly follows a specific sequence: a flat base board, then a fresh leaf, a transparency, and a clear panel that flattens the transparency against the leaf while allowing sunlight through. Finally, clamps secure the stack with even pressure while the print develops.</p>
+            </div>
+
+            <div class="assembly-section">
+                <div class="assembly-grid">
+                    <div class="info-side">
+                        <div class="info-card" data-item="clamps">
+                            <div class="info-header">
+                                <span>Clamps</span>
+                                <span class="expand-icon">▼</span>
+                            </div>
+                            <div class="info-content">
+                                <img src="photos/materials_clamps.jpg" alt="Clamps" class="info-image">
+                                <p>Maintain consistent, even pressure and alignment throughout the exposure period.</p>
+                                <p class="info-note">Binder clips work well for this.</p>
+                            </div>
+                        </div>
+
+                        <div class="info-card" data-item="panel">
+                            <div class="info-header">
+                                <span>Clear Panel</span>
+                                <span class="expand-icon">▼</span>
+                            </div>
+                            <div class="info-content">
+                                <img src="photos/materials_glass.jpg" alt="Clear panel" class="info-image">
+                                <p>Presses the transparency against the leaf while allowing UV light to pass through for exposure.</p>
+                                <p class="info-note">Use glass or clear acrylic. Must be transparent to UV light.</p>
+                            </div>
+                        </div>
+
+                        <div class="info-card" data-item="transparency">
+                            <div class="info-header">
+                                <span>Transparency</span>
+                                <span class="expand-icon">▼</span>
+                            </div>
+                            <div class="info-content">
+                                <img src="photos/materials_transparency.jpg" alt="Transparency" class="info-image">
+                                <p>This image acts as a light mask, the dark areas of the image protect areas beneath it from UV exposure.</p>
+                                <p class="info-note">Clear acetate prints are available at most print shops. High contrast images have best results.</p>
+                            </div>
+                        </div>
+
+                        <div class="info-card" data-item="leaves">
+                            <div class="info-header">
+                                <span>Leaves</span>
+                                <span class="expand-icon">▼</span>
+                            </div>
+                            <div class="info-content">
+                                <img src="photos/materials_leafs.jpg" alt="Leaves" class="info-image">
+                                <p>Fresh, flat specimens with smooth surfaces work best for clear image transfer.</p>
+                                <p class="info-note">Recommended: maple, philodendron, hostas. Avoid fuzzy or waxy leaves.</p>
+                            </div>
+                        </div>
+
+                        <div class="info-card" data-item="board">
+                            <div class="info-header">
+                                <span>Base Board</span>
+                                <span class="expand-icon">▼</span>
+                            </div>
+                            <div class="info-content">
+                                <img src="photos/materials_wood.jpg" alt="Base board" class="info-image">
+                                <p>Provides stable backing and even pressure distribution across the entire assembly.</p>
+                                <p class="info-note">Use moisture wicking materials like wood.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="diagram-side">
+                        <img src="svgs/exploded_assembly.svg" alt="Exploded assembly diagram" class="diagram-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPOSURE SECTION -->
+        <section class="section">
+            <div class="exposure-section">
+                <h2>Exposure</h2>
+                <div class="exposure-content">
+                    <div class="exposure-labels">
+                        <div class="exposure-label-card" data-item="sunlight">
+                            <div class="exposure-label-header">
+                                <span>Sunlight</span>
+                                <span class="expand-icon">▼</span>
+                            </div>
+                            <div class="exposure-label-content">
+                                <p>The photosensitivity of chlorophyll is what makes this printing process possible. Strong sunlight breaks down the molecules, creating the image.</p>
+                                <p class="exposure-label-note">Direct sunlight is most effective. You can prop your assembled stack in front of a window or place it outside in the sunlight.</p>
+                            </div>
+                        </div>
+
+                        <div class="exposure-label-card" data-item="time">
+                            <div class="exposure-label-header">
+                                <span>Time</span>
+                                <span class="expand-icon">▼</span>
+                            </div>
+                            <div class="exposure-label-content">
+                                <p>Development time varies greatly depending on environmental conditions, but the typical range is between 2-7 days.</p>
+                                <p class="exposure-label-note">Higher sun intensity develops the images faster. Cloudy days may disrupt or slower the process. Thicker leaves take longer to develop.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exposure-images">
+                        <img src="svgs/assembly.svg" alt="Assembly" class="exposure-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESULTS SECTION -->
+        <section class="section">
+            <div class="section-header">
+                <h2>Results</h2>
+            </div>
+            <div class="results-grid">
+                <div class="result-item">
+                    <div class="result-image" data-lightbox="result1">
+                        <img src="photos/01_pittsburgh_smog.JPG" alt="Example print 1">
+                    </div>
+                    <p class="result-caption">Pittsburgh smog</p>
+                    <p class="result-source">Source: <a href="https://rarehistoricalphotos.com/coal-smoke-pittsburgh-photos/" target="_blank">rarehistoricalphotos.com/coal-smoke-pittsburgh-photos/</a></p>
+                </div>
+                <div class="result-item">
+                    <div class="result-image" data-lightbox="result2">
+                        <img src="photos/02_Carnegie_Steel.JPG" alt="Example print 2">
+                    </div>
+                    <p class="result-caption">Carnegie Steel</p>
+                    <p class="result-source">Source: <a href="https://theinnerdetail.com/andrew-carnegie-u-s-steel-magnate-biography/" target="_blank">theinnerdetail.com/andrew-carnegie-u-s-steel-magnate-biography/</a></p>
+                </div>
+                <div class="result-item">
+                    <div class="result-image" data-lightbox="result3">
+                        <img src="photos/03_pittsburgh_bridge.JPG" alt="Example print 3">
+                    </div>
+                    <p class="result-caption">Pittsburgh bridge</p>
+                    <p class="result-source">Source: <a href="https://www.alternatehistory.com/forum/threads/photos-from-featherstons-confederacy-tl-191.185493/page-177" target="_blank">alternatehistory.com/forum/threads/photos-from-featherstons-confederacy-tl-191.185493/page-177</a></p>
+                </div>
+                <div class="result-item">
+                    <div class="result-image" data-lightbox="result4">
+                        <img src="photos/04_Henry_Phipps.JPG" alt="Example print 4">
+                    </div>
+                    <p class="result-caption">Henry Phipps</p>
+                    <p class="result-source">Source: <a href="https://www.phipps.conservatory.org/visit-and-explore/explore/explore-our-history/the-story-of-phipps/a-gift-to-pittsburgh-1893-1930" target="_blank">phipps.conservatory.org/visit-and-explore/explore/explore-our-history/the-story-of-phipps/a-gift-to-pittsburgh-1893-1930</a></p>
+                </div>
+                <div class="result-item">
+                    <div class="result-image" data-lightbox="result5">
+                        <img src="photos/05_phipps_historic.jpg" alt="Example print 5">
+                    </div>
+                    <p class="result-caption">Phipps historic</p>
+                    <p class="result-source">Source: <a href="https://www.phipps.conservatory.org/exhibits-and-events/historic-flower-shows-and-exhibits/fall-flower-show-1897" target="_blank">phipps.conservatory.org/exhibits-and-events/historic-flower-shows-and-exhibits/fall-flower-show-1897</a></p>
+                </div>
+                <div class="result-item">
+                    <div class="result-image" data-lightbox="result6">
+                        <img src="photos/06_loose_leaf.jpg" alt="Example print 6">
+                    </div>
+                    <p class="result-caption">Loose leaf</p>
+                    <p class="result-source">Corner of Liberty and Fifth Avenues in Pittsburgh. Image courtesy of the Smoke Control Lantern Slide Collection, c.1940–1950, AIS.1978.22, Archives & Special Collections, University of Pittsburgh Library System. <a href="https://ghil.hypotheses.org/4617" target="_blank">ghil.hypotheses.org/4617</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lightbox -->
+        <div class="lightbox" id="lightbox">
+            <span class="lightbox-close" id="lightboxClose">&times;</span>
+            <img class="lightbox-content" id="lightboxImage" src="" alt="Result image">
+        </div>
+
+        <footer>
+            <p>Part of the <em>Corpus loci</em> research project · Kimberly Blacutt, 2025</p>
+            <p style="margin-top: 1rem;">Made a chlorophyll print? Share it with me at <a href="mailto:chloroprints@gmail.com" style="color: var(--color-accent); text-decoration: underline;">chloroprints@gmail.com</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // Info card expansion for both assembly and exposure
+        document.querySelectorAll('.info-card, .exposure-label-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const isActive = card.classList.contains('active');
+                
+                // Get the parent section to only close cards within the same section
+                const parentSection = card.closest('.assembly-grid, .exposure-content');
+                
+                // Close all cards in this section
+                parentSection.querySelectorAll('.info-card, .exposure-label-card').forEach(c => {
+                    c.classList.remove('active');
+                });
+                
+                // Open clicked card if it wasn't already open
+                if (!isActive) {
+                    card.classList.add('active');
+                }
+            });
+        });
+
+        // Lightbox functionality
+        const resultImages = {
+            result1: 'photos/01_pittsburgh_smog.JPG',
+            result2: 'photos/02_Carnegie_Steel.JPG',
+            result3: 'photos/03_pittsburgh_bridge.JPG',
+            result4: 'photos/04_Henry_Phipps.JPG',
+            result5: 'photos/05_phipps_historic.jpg',
+            result6: 'photos/06_loose_leaf.jpg'
+        };
+
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxClose = document.getElementById('lightboxClose');
+
+        document.querySelectorAll('.result-image').forEach(resultDiv => {
+            resultDiv.addEventListener('click', () => {
+                const resultId = resultDiv.getAttribute('data-lightbox');
+                if (resultImages[resultId]) {
+                    lightboxImage.src = resultImages[resultId];
+                    lightbox.classList.add('active');
+                }
+            });
+        });
+
+        lightboxClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            lightbox.classList.remove('active');
+        });
+
+        lightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        lightboxImage.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    </script>
+</body>
+</html>
